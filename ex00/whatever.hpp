@@ -13,16 +13,16 @@
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
 
-template<typename T>
-void	swap(T& lhs, T& rhs)
+template<typename Type>
+void	swap(Type& lhs, Type& rhs)
 {
-	T	temp = lhs;
+	Type	temp = lhs;
 	lhs = rhs;
 	rhs = temp;
 }
 
-template<typename T>
-T	min(const T& lhs, const T& rhs)
+template<typename Type>
+Type	min(const Type& lhs, const Type& rhs)
 {
 	if (lhs < rhs)
 	{
@@ -34,8 +34,8 @@ T	min(const T& lhs, const T& rhs)
 	}
 }
 
-template<typename T>
-T	max(const T& lhs, const T& rhs)
+template<typename Type>
+Type	max(const Type& lhs, const Type& rhs)
 {
 	if (lhs > rhs)
 	{

@@ -15,12 +15,13 @@
 
 #include <cstddef>
 
-template<typename T, typename F>
-void	iter(T*	arr, std::size_t arr_len, F func)
+/* Apply a function onto each element of an array */
+template<typename Type, typename Function>
+void	iter(Type* array, std::size_t len, Function fn)
 {
-	for (size_t i = 0; i < arr_len; ++i)
+	for (size_t i = 0; i < len; ++i)
 	{
-		func(arr[i]);
+		fn(array[i]);
 	}
 }
 
