@@ -6,7 +6,7 @@
 /*   By: kecheong <kecheong@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 23:32:56 by kecheong          #+#    #+#             */
-/*   Updated: 2025/01/08 05:06:01 by kecheong         ###   ########.fr       */
+/*   Updated: 2025/01/08 05:25:23 by kecheong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int	main()
 		println("Default construct an array, then assign it with existing one");
 		Array<int> anotherFiveInts = Array<int>();
 		anotherFiveInts = copyFiveInts;
+		std::cout << anotherFiveInts;
+		// self assignment is checked against
+		anotherFiveInts = anotherFiveInts;
 		std::cout << anotherFiveInts;
 	}
 }

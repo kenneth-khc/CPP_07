@@ -6,7 +6,7 @@
 /*   By: kecheong <kecheong@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 23:33:07 by kecheong          #+#    #+#             */
-/*   Updated: 2025/01/08 05:06:18 by kecheong         ###   ########.fr       */
+/*   Updated: 2025/01/08 05:25:32 by kecheong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 #include <iostream>
 #include <exception>
+
+namespace
+{
+	const char*	GREEN = "\033[0;32m";
+	const char*	RED = "\033[0;31m";
+	const char*	C_RESET = "\033[0m";
+}
 
 template<typename ElemType>
 class	Array
@@ -35,25 +42,14 @@ private:
 	ElemType		*elements;
 };
 
-template<typename ElemType>
-std::ostream&	operator<<(std::ostream& os, const Array<ElemType>& arr)
-{
-	std::cout << "Array of size " << arr.size() << ": ";
-	for (unsigned int i = 0; i < arr.size(); ++i)
-	{
-		std::cout << arr[i] << ' ';
-	}
-	std::cout << '\n';
-	return os;
-}
-
 /* Default constructor */
 template<typename ElemType>
 Array<ElemType>::Array():
 elemCount(0),
 elements(new ElemType[0])
 {
-	std::cout << "Array default constructor called\n";
+	std::cout << GREEN << "Array default constructor called"
+			  << C_RESET << '\n';
 }
 
 /* Constructor */
@@ -62,7 +58,8 @@ Array<ElemType>::Array(unsigned int numElems):
 elemCount(numElems),
 elements(new ElemType[elemCount]())
 {
-	std::cout << "Array constructor called\n";
+	std::cout << GREEN << "Array constructor called"
+			  << C_RESET << '\n';
 }
 
 /* Copy constructor */
@@ -71,7 +68,8 @@ Array<ElemType>::Array(const Array<ElemType>& other):
 elemCount(other.elemCount),
 elements(new ElemType[elemCount])
 {
-	std::cout << "Array copy constructor called\n";
+	std::cout << GREEN << "Array copy constructor called"
+			  << C_RESET << '\n';
 
 	for (unsigned int i = 0; i < other.size(); ++i)
 	{
@@ -83,12 +81,18 @@ elements(new ElemType[elemCount])
 template<typename ElemType>
 Array<ElemType>&	Array<ElemType>::operator=(const Array<ElemType>& rhs)
 {
-	delete[] elements;
-	elemCount = rhs.size();
-	elements = new ElemType[size()];
-	for (unsigned int i = 0; i < rhs.size(); ++i)
+	std::cout << GREEN << "Array copy assignment operator called"
+			  << C_RESET << '\n';
+
+	if (this != &rhs)
 	{
-		elements[i] = rhs[i];
+		delete[] elements;
+		elemCount = rhs.size();
+		elements = new ElemType[size()];
+		for (unsigned int i = 0; i < rhs.size(); ++i)
+		{
+			elements[i] = rhs[i];
+		}
 	}
 	return *this;
 }
@@ -97,11 +101,12 @@ Array<ElemType>&	Array<ElemType>::operator=(const Array<ElemType>& rhs)
 template<typename ElemType>
 Array<ElemType>::~Array()
 {
-	std::cout << "Array destructor called\n";
+	std::cout << RED << "Array destructor called" << C_RESET <<'\n';
 
 	delete[] elements;
 }
 
+/* Overload subscript operator */
 template<typename ElemType>
 ElemType&	Array<ElemType>::operator[](unsigned int index)
 {
@@ -112,6 +117,7 @@ ElemType&	Array<ElemType>::operator[](unsigned int index)
 	return elements[index];
 }
 
+/* Overload subscript operator */
 template<typename ElemType>
 const ElemType&	Array<ElemType>::operator[](unsigned int index) const
 {
@@ -126,6 +132,19 @@ template<typename ElemType>
 unsigned int	Array<ElemType>::size() const
 {
 	return elemCount;
+}
+
+/* Overload << operator */
+template<typename ElemType>
+std::ostream&	operator<<(std::ostream& os, const Array<ElemType>& arr)
+{
+	std::cout << "Array of size " << arr.size() << ": |";
+	for (unsigned int i = 0; i < arr.size(); ++i)
+	{
+		std::cout << arr[i] << "|";
+	}
+	std::cout << '\n';
+	return os;
 }
 
 #endif
