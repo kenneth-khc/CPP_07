@@ -88,7 +88,7 @@ Array<ElemType>&	Array<ElemType>::operator=(const Array<ElemType>& rhs)
 	{
 		delete[] elements;
 		elemCount = rhs.size();
-		elements = new ElemType[size()];
+		elements = new ElemType[rhs.size()];
 		for (unsigned int i = 0; i < rhs.size(); ++i)
 		{
 			elements[i] = rhs[i];
@@ -138,7 +138,7 @@ unsigned int	Array<ElemType>::size() const
 template<typename ElemType>
 std::ostream&	operator<<(std::ostream& os, const Array<ElemType>& arr)
 {
-	std::cout << "Array of size " << arr.size() << ": |";
+	std::cout << "Array at " << &arr << " of size " << arr.size() << ": |";
 	for (unsigned int i = 0; i < arr.size(); ++i)
 	{
 		std::cout << arr[i] << "|";

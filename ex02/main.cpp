@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
 #include "Array.hpp"
 
 template<typename Type>
@@ -32,6 +33,12 @@ int	main()
 	{
 		Array<float> tenFloats = Array<float>(10);
 		std::cout << tenFloats;
+		println("Setting each float to 42.1f");
+		for (unsigned i = 0; i < tenFloats.size(); ++i)
+		{
+			tenFloats[i] = 42.1f;
+		}
+		std::cout << tenFloats;
 	}
 	println("----------------------------");
 
@@ -40,7 +47,7 @@ int	main()
 		Array<int> fiveInts = Array<int>(5);
 		std::cout << fiveInts;
 		println("Setting each int to 42");
-		for (unsigned int i = 0; i < 5; ++i)
+		for (unsigned int i = 0; i < fiveInts.size(); ++i)
 		{
 			fiveInts[i] = 42;
 		}
@@ -55,7 +62,30 @@ int	main()
 		anotherFiveInts = copyFiveInts;
 		std::cout << anotherFiveInts;
 		// self assignment is checked against
-		anotherFiveInts = anotherFiveInts;
+		//anotherFiveInts = anotherFiveInts;
 		std::cout << anotherFiveInts;
 	}
+	println("----------------------------");
+
+#if 0
+	println("Constructing array of five strings");
+	{
+		Array<std::string> fiveStrings = Array<std::string>(5);
+		std::cout << fiveStrings;
+		for (unsigned int i = 0; i < fiveStrings.size(); ++i)
+		{
+			fiveStrings[i] = "Hello";
+		}
+		std::cout << fiveStrings;
+		println("Accessing out of bounds...");
+		/*try*/
+		/*{*/
+			fiveStrings[5] = "Goodbye";
+		/*}*/
+		/*catch (std::exception& e)*/
+		/*{*/
+		/*	std::cout << e.what() << '\n';*/
+		/*}*/
+	}
+#endif
 }
