@@ -6,12 +6,11 @@
 /*   By: kecheong <kecheong@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 23:32:56 by kecheong          #+#    #+#             */
-/*   Updated: 2025/01/08 05:25:23 by kecheong         ###   ########.fr       */
+/*   Updated: 2025/05/16 22:31:53 by kecheong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
 #include "Array.hpp"
 
 template<typename Type>
@@ -59,6 +58,8 @@ int	main()
 
 		println("Default construct an array, then assign it with existing one");
 		Array<int> anotherFiveInts = Array<int>();
+		std::cout << anotherFiveInts;
+		std::cout << "Assigning array of 42s to default array...\n";
 		anotherFiveInts = copyFiveInts;
 		std::cout << anotherFiveInts;
 		// self assignment is checked against
@@ -67,7 +68,7 @@ int	main()
 	}
 	println("----------------------------");
 
-#if 0
+#if 1
 	println("Constructing array of five strings");
 	{
 		Array<std::string> fiveStrings = Array<std::string>(5);
@@ -78,14 +79,14 @@ int	main()
 		}
 		std::cout << fiveStrings;
 		println("Accessing out of bounds...");
-		/*try*/
-		/*{*/
+		try
+		{
 			fiveStrings[5] = "Goodbye";
-		/*}*/
-		/*catch (std::exception& e)*/
-		/*{*/
-		/*	std::cout << e.what() << '\n';*/
-		/*}*/
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << '\n';
+		}
 	}
 #endif
 }

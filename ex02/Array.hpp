@@ -6,7 +6,7 @@
 /*   By: kecheong <kecheong@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 23:33:07 by kecheong          #+#    #+#             */
-/*   Updated: 2025/01/08 05:26:19 by kecheong         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:26:30 by kecheong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ public:
 	Array&	operator=(const Array&); // assignment operator
 	~Array();
 
-	ElemType&		operator[](unsigned int index);
-	const ElemType&	operator[](unsigned int index) const;
+	ElemType&		operator[](unsigned int);
+	const ElemType&	operator[](unsigned int) const;
 	unsigned int	size() const;
 
 private:

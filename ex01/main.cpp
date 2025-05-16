@@ -48,24 +48,26 @@ void	minusThirtyTwo(T& t)
 	t -= 32;
 }
 
-//class	Point
-//{
-//public:
-//	Point(int x, int y): x(x), y(y) { }
-//	Point	operator+(Point& rhs)
-//	{ Point newPoint(x + rhs.x, y + rhs.y); return newPoint; }
-//	Point&	operator+=(int rhs)
-//	{ x += rhs; y += rhs; return *this; }
-//	Point&	operator*=(int rhs)
-//	{ x *= rhs; y *= rhs; return *this; }
-//	int	x;
-//	int y;
-//};
-//std::ostream&	operator<<(std::ostream& os, const Point& p)
-//{
-//	std::cout << "(" << p.x << ", " << p.y << ")";
-//	return os;
-//}
+#if 0
+class	Point
+{
+public:
+	Point(int x, int y): x(x), y(y) { }
+	Point	operator+(Point& rhs)
+	{ Point newPoint(x + rhs.x, y + rhs.y); return newPoint; }
+	Point&	operator+=(int rhs)
+	{ x += rhs; y += rhs; return *this; }
+	Point&	operator*=(int rhs)
+	{ x *= rhs; y *= rhs; return *this; }
+	int	x;
+	int y;
+};
+std::ostream&	operator<<(std::ostream& os, const Point& p)
+{
+	std::cout << "(" << p.x << ", " << p.y << ")";
+	return os;
+}
+#endif
 
 int	main(int, char**)
 {
@@ -136,15 +138,17 @@ int	main(int, char**)
 		printArr(arr, SIZE);
 	}
 	println("-----------------------");
-	//println("Array of Points");
-	//{
-	//	Point	arr[5] = {
-	//		Point(0,0), Point(1,1), Point(2,2), Point(3,5), Point(6,9)};
-	//	printArr(arr, 5);
-	//	iter(arr, 5, plusOne<Point>);
-	//	printArr(arr, 5);
-	//	iter(arr, 5, doubleNum<Point>);
-	//	printArr(arr, 5);
-	//}
-	//println("-----------------------");
+#if 0
+	println("Array of Points");
+	{
+		Point	arr[5] = {
+			Point(0,0), Point(1,1), Point(2,2), Point(3,5), Point(6,9)};
+		printArr(arr, 5);
+		iter(arr, 5, plusOne<Point>);
+		printArr(arr, 5);
+		iter(arr, 5, doubleNum<Point>);
+		printArr(arr, 5);
+	}
+	println("-----------------------");
+#endif
 }
