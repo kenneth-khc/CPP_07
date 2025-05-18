@@ -18,6 +18,7 @@ CXXFLAGS := -Wall -Werror -Wextra -std=c++98 -pedantic
 
 srcs := main.cpp intra_main.cpp
 objs := $(addprefix obj/, $(srcs:.cpp=.o))
+deps := $(objs:.o=.d)
 
 .PHONY: all
 all: $(NAME) $(INTRA_TEST)
@@ -29,7 +30,7 @@ $(INTRA_TEST): $(objs)
 	$(CXX) $(CXXFLAGS) intra_main.cpp -o $(INTRA_TEST)
 
 obj/%.o: %.cpp | obj
-	$(CXX) $(CXXFLAGS) $< -c -o $@
+	$(CXX) $(CXXFLAGS) -MMD $< -c -o $@
 
 obj:
 	@mkdir -p obj/
@@ -41,14 +42,17 @@ clean:
 .PHONY: fclean
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(INTRA_TEST)
 
 .PHONY: re
 re: fclean all
 
 .PHONY: debug
 debug: CXXFLAGS += -g3
-debug: $(NAME)
+debug: all
 
 .PHONY: fsan
 fsan: CXXFLAGS += -fsanitize=address -g3
-fsan: $(NAME)
+fsan: all
+
+-include $(deps)

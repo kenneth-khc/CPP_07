@@ -19,7 +19,7 @@
 template<typename Type, typename Function>
 void	iter(Type* array, std::size_t len, Function fn)
 {
-	for (size_t i = 0; i < len; ++i)
+	for (std::size_t i = 0; i < len; ++i)
 	{
 		fn(array[i]);
 	}

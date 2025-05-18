@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <exception>
+#include <cstddef>
 
 namespace
 {
@@ -31,15 +32,15 @@ public:
 	Array(unsigned int); // construct array with n elements
 	Array(const Array&); // copy constructor
 	Array&	operator=(const Array&); // assignment operator
-	~Array();
+	~Array(); // destructor
 
-	ElemType&		operator[](unsigned int);
-	const ElemType&	operator[](unsigned int) const;
-	unsigned int	size() const;
+	ElemType&		operator[](std::size_t);
+	const ElemType&	operator[](std::size_t) const;
+	std::size_t		size() const;
 
 private:
-	unsigned int	elemCount;
-	ElemType		*elements;
+	std::size_t	elemCount;
+	ElemType	*elements;
 };
 
 /* Default constructor */
@@ -71,7 +72,7 @@ elements(new ElemType[elemCount])
 	std::cout << GREEN << "Array copy constructor called"
 			  << C_RESET << '\n';
 
-	for (unsigned int i = 0; i < other.size(); ++i)
+	for (std::size_t i = 0; i < other.size(); ++i)
 	{
 		elements[i] = other[i];
 	}
@@ -89,7 +90,7 @@ Array<ElemType>&	Array<ElemType>::operator=(const Array<ElemType>& rhs)
 		delete[] elements;
 		elemCount = rhs.size();
 		elements = new ElemType[rhs.size()];
-		for (unsigned int i = 0; i < rhs.size(); ++i)
+		for (std::size_t i = 0; i < rhs.size(); ++i)
 		{
 			elements[i] = rhs[i];
 		}
@@ -108,7 +109,7 @@ Array<ElemType>::~Array()
 
 /* Overload subscript operator */
 template<typename ElemType>
-ElemType&	Array<ElemType>::operator[](unsigned int index)
+ElemType&	Array<ElemType>::operator[](std::size_t index)
 {
 	if (index >= elemCount)
 	{
@@ -119,7 +120,7 @@ ElemType&	Array<ElemType>::operator[](unsigned int index)
 
 /* Overload subscript operator */
 template<typename ElemType>
-const ElemType&	Array<ElemType>::operator[](unsigned int index) const
+const ElemType&	Array<ElemType>::operator[](std::size_t index) const
 {
 	if (index >= elemCount)
 	{
@@ -129,7 +130,7 @@ const ElemType&	Array<ElemType>::operator[](unsigned int index) const
 }
 
 template<typename ElemType>
-unsigned int	Array<ElemType>::size() const
+std::size_t	Array<ElemType>::size() const
 {
 	return elemCount;
 }
@@ -139,7 +140,7 @@ template<typename ElemType>
 std::ostream&	operator<<(std::ostream& os, const Array<ElemType>& arr)
 {
 	std::cout << "Array at " << &arr << " of size " << arr.size() << ": |";
-	for (unsigned int i = 0; i < arr.size(); ++i)
+	for (std::size_t i = 0; i < arr.size(); ++i)
 	{
 		std::cout << arr[i] << "|";
 	}

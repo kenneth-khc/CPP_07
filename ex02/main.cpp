@@ -33,7 +33,7 @@ int	main()
 		Array<float> tenFloats = Array<float>(10);
 		std::cout << tenFloats;
 		println("Setting each float to 42.1f");
-		for (unsigned i = 0; i < tenFloats.size(); ++i)
+		for (std::size_t i = 0; i < tenFloats.size(); ++i)
 		{
 			tenFloats[i] = 42.1f;
 		}
@@ -46,17 +46,17 @@ int	main()
 		Array<int> fiveInts = Array<int>(5);
 		std::cout << fiveInts;
 		println("Setting each int to 42");
-		for (unsigned int i = 0; i < fiveInts.size(); ++i)
+		for (std::size_t i = 0; i < fiveInts.size(); ++i)
 		{
 			fiveInts[i] = 42;
 		}
 		std::cout << fiveInts;
 
-		println("Copy construct a new array from the existing one");
+		println("\nCopy construct a new array from the existing one");
 		Array<int> copyFiveInts = fiveInts;
 		std::cout << copyFiveInts;
 
-		println("Default construct an array, then assign it with existing one");
+		println("\nDefault construct an array, then assign it with existing one");
 		Array<int> anotherFiveInts = Array<int>();
 		std::cout << anotherFiveInts;
 		std::cout << "Assigning array of 42s to default array...\n";
@@ -64,6 +64,12 @@ int	main()
 		std::cout << anotherFiveInts;
 		// self assignment is checked against
 		//anotherFiveInts = anotherFiveInts;
+		println("Modify one array and not the other");
+		for (std::size_t i = 0; i < copyFiveInts.size(); ++i)
+		{
+			copyFiveInts[i] = 999;
+		}
+		std::cout << copyFiveInts;
 		std::cout << anotherFiveInts;
 	}
 	println("----------------------------");
@@ -73,7 +79,7 @@ int	main()
 	{
 		Array<std::string> fiveStrings = Array<std::string>(5);
 		std::cout << fiveStrings;
-		for (unsigned int i = 0; i < fiveStrings.size(); ++i)
+		for (std::size_t i = 0; i < fiveStrings.size(); ++i)
 		{
 			fiveStrings[i] = "Hello";
 		}
